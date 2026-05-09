@@ -1,0 +1,41 @@
+[package]
+name = "dappswarm"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "dappswarm"
+path = "src/main.rs"
+
+[dependencies]
+ant-crypto = { path = "../ant/crates/ant-crypto" }
+anyhow = "1"
+bytes = "1"
+clap = { version = "4", features = ["derive", "env"] }
+hex = "0.4"
+k256 = { version = "0.13", features = ["ecdsa"] }
+reqwest = { version = "0.12", default-features = false, features = [
+  "json",
+  "rustls-tls",
+  "stream"
+] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha3 = "0.10"
+tar = "0.4"
+tempfile = "3"
+thiserror = "2"
+tokio = { version = "1", features = [
+  "fs",
+  "io-util",
+  "macros",
+  "process",
+  "rt-multi-thread"
+] }
+walkdir = "2"
+
+[dev-dependencies]
+tempfile = "3"
