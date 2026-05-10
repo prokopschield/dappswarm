@@ -7,5 +7,6 @@
 //! (`bundle`), and orchestrators (`publish`, `resolve`, `install`).
 
 pub mod bundle;
+pub mod feed;
 pub mod soc;
 pub mod swarm;
