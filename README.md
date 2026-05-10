@@ -102,6 +102,28 @@ loaded image name in `docker-compose.yml`. `dappswarm install` will run
 `docker load` on every archive at the bundle root before bringing the
 compose project up.
 
+### Demo site
+
+`demo/` is a SvelteKit app that explains dappswarm and is itself
+deployed via dappswarm. It lives behind nginx on port `8081` once
+installed.
+
+```sh
+make demo-build             # compile svelte → demo/dist/ (~550 KiB)
+make demo-publish           # publishes demo/dist/; prints owner + index
+export DAPPSWARM_OWNER=0x…
+make demo-install           # resolve → docker compose up -d on :8081
+
+curl -fsS http://localhost:8081 | head -1
+# <!doctype html>
+```
+
+The page reads its own feed at build time, so when served from a
+freshly-published bundle the footer prints the live `bzz:` ref, the
+"This page's feed" section lists every prior version, and the
+"Try it live" widget recomputes the SOC address client-side. See
+`demo/README` (the page itself) for development notes.
+
 ## Trust model
 
 The publisher's secp256k1 EOA is the trust anchor. Resolvers must

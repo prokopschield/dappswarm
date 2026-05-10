@@ -3,3 +3,6 @@ CONTEXT.md
 PLAN.md
 /target
 /.claude
+/demo/node_modules
+/demo/dist
+/demo/.svelte-kit

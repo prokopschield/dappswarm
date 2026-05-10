@@ -13,7 +13,12 @@ PACKAGE := hello.dnp.dappnode.eth
 BUNDLE  := fixtures/hello-dnp
 INSTALL_DIR := /tmp/dappswarm-install
 
+DEMO_PACKAGE := dappswarm-demo
+DEMO_BUNDLE  := demo/dist
+DEMO_INSTALL_DIR := /tmp/dappswarm-demo-install
+
 .PHONY: doctor publish info resolve install clean-install
+.PHONY: demo-build demo-publish demo-install demo-clean
 
 doctor:
 	cargo run --quiet -- doctor
@@ -36,3 +41,18 @@ install:
 clean-install:
 	-docker compose -f $(INSTALL_DIR)/docker-compose.yml down 2>/dev/null
 	-rm -rf $(INSTALL_DIR)
+
+demo-build:
+	cd demo && ./scripts/build-bundle.sh
+
+demo-publish: demo-build
+	cargo run --quiet -- publish $(DEMO_BUNDLE)
+
+demo-install:
+	@if [ -z "$(DAPPSWARM_OWNER)" ]; then echo "set DAPPSWARM_OWNER=0x…"; exit 1; fi
+	cargo run --quiet -- install $(DEMO_PACKAGE) --owner $(DAPPSWARM_OWNER) --data-dir $(DEMO_INSTALL_DIR)
+
+demo-clean:
+	-docker compose -f $(DEMO_INSTALL_DIR)/docker-compose.yml down 2>/dev/null
+	-rm -rf $(DEMO_INSTALL_DIR)
+	-rm -rf demo/dist demo/.svelte-kit
