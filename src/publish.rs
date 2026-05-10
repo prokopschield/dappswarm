@@ -59,8 +59,18 @@ pub async fn run(client: &Client, secret: &[u8; 32], dir: &Path) -> Result<Publi
         .map(|(rel, _)| rel)
         .collect();
 
+    // Prefer index.html as the manifest's index document so a human
+    // hitting `/bzz/<ref>/` lands on the page; the DNP manifest is
+    // still reachable at the explicit `/bzz/<ref>/dappnode_package.json`
+    // path that resolvers walk.
+    let index_doc = if files.iter().any(|f| f == "index.html") {
+        "index.html"
+    } else {
+        MANIFEST_FILENAME
+    };
+
     let bzz_ref = client
-        .post_bzz_tar(tar_bytes, MANIFEST_FILENAME)
+        .post_bzz_tar(tar_bytes, index_doc)
         .await
         .context("uploading bundle tar to /bzz")?;
 
