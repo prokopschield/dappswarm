@@ -8,6 +8,7 @@
 
 pub mod bundle;
 pub mod feed;
+pub mod install;
 pub mod publish;
 pub mod resolve;
 pub mod soc;
