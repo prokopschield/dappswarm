@@ -100,6 +100,7 @@ pub fn build(secret: &[u8; 32], id: [u8; SOC_ID_SIZE], payload: &[u8]) -> Result
 }
 
 /// SOC address derivation: `keccak256(id || owner_eth_address)`.
+#[must_use]
 pub fn soc_address(id: &[u8; SOC_ID_SIZE], owner_eoa: &[u8; 20]) -> [u8; 32] {
     let mut buf = [0u8; SOC_ID_SIZE + 20];
 

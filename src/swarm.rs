@@ -61,7 +61,7 @@ impl Client {
     /// Construct a client targeting `base` (e.g. `http://127.0.0.1:1633`).
     pub fn new(base: impl Into<String>) -> Self {
         let http = HttpClient::builder()
-            .timeout(Duration::from_secs(900))
+            .timeout(Duration::from_mins(15))
             .build()
             .expect("reqwest client");
 
@@ -79,10 +79,12 @@ impl Client {
         self
     }
 
+    #[must_use]
     pub fn base(&self) -> &str {
         &self.base
     }
 
+    #[must_use]
     pub fn postage_batch(&self) -> Option<&str> {
         self.postage_batch.as_deref()
     }

@@ -35,6 +35,7 @@ pub enum FeedError {
 }
 
 /// `topic = keccak256("dappswarm:" || package_name)`.
+#[must_use]
 pub fn topic(package_name: &str) -> [u8; 32] {
     let mut buf = Vec::with_capacity(TOPIC_PREFIX.len() + package_name.len());
 
@@ -45,6 +46,7 @@ pub fn topic(package_name: &str) -> [u8; 32] {
 }
 
 /// `id_n = keccak256(topic || u64_be(index))`.
+#[must_use]
 pub fn id_at(topic: &[u8; 32], index: u64) -> [u8; 32] {
     let mut buf = [0u8; 32 + 8];
 
