@@ -1,6 +1,6 @@
 {
   "name": "dappswarm-demo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Self-hosted Svelte explainer for dappswarm. The page you are reading is the build output.",
   "type": "service",
   "license": "GPL-3.0-or-later",
