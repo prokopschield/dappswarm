@@ -1,0 +1,148 @@
+@import '@fontsource-variable/inter/index.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --hex-honey: #fbbf24;
+    --hex-honey-soft: #f59e0b;
+    --hex-ink: #0a0807;
+    --hex-surface: #171109;
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+  }
+
+  html,
+  body {
+    background: var(--hex-ink);
+    color: #fef3c7;
+  }
+
+  body {
+    font-family: 'Inter Variable', system-ui, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgba(251, 191, 36, 0.4);
+    color: #0a0807;
+  }
+}
+
+@layer components {
+  .hex-bg {
+    background-image:
+      radial-gradient(
+        ellipse 80% 60% at var(--mouse-x) var(--mouse-y),
+        rgba(251, 191, 36, 0.12) 0%,
+        rgba(251, 191, 36, 0.04) 25%,
+        transparent 60%
+      ),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 84 96'><path d='M21 0L42 12V36L21 48L0 36V12Z M63 0L84 12V36L63 48L42 36V12Z M21 48L42 60V84L21 96L0 84V60Z M63 48L84 60V84L63 96L42 84V60Z' fill='none' stroke='rgba(251,191,36,0.07)' stroke-width='1'/></svg>");
+    background-size: auto, 84px 96px;
+  }
+
+  .hex-grain {
+    position: relative;
+  }
+  .hex-grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.7 0 0 0 0 0.3 0 0 0 0.06 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.4;
+  }
+
+  .hex-card {
+    @apply relative overflow-hidden rounded-2xl border border-ink-border bg-ink-surface/70 p-6 backdrop-blur-sm;
+  }
+
+  .hex-card-glow {
+    @apply hex-card transition-all duration-500;
+    box-shadow: 0 1px 0 rgba(251, 191, 36, 0.04) inset;
+  }
+  .hex-card-glow:hover {
+    border-color: rgba(251, 191, 36, 0.4);
+    box-shadow:
+      0 0 0 1px rgba(251, 191, 36, 0.2) inset,
+      0 24px 60px -20px rgba(251, 191, 36, 0.15);
+  }
+
+  .hex-pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink-border bg-ink-surface/70 px-4 py-2 text-sm text-cream-mute backdrop-blur;
+  }
+
+  .hex-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-medium transition-all duration-200;
+  }
+  .hex-button-primary {
+    @apply hex-button bg-honey text-ink hover:bg-honey-soft;
+    box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.3), 0 12px 32px -8px rgba(251, 191, 36, 0.5);
+  }
+  .hex-button-ghost {
+    @apply hex-button border border-ink-border bg-transparent text-cream hover:border-honey/40 hover:text-honey;
+  }
+
+  .hex-mono {
+    font-family: 'JetBrains Mono Variable', ui-monospace, monospace;
+    font-feature-settings: 'ss02', 'zero';
+  }
+
+  .hex-section {
+    @apply relative px-6 py-24 sm:py-32;
+  }
+
+  .hex-eyebrow {
+    @apply hex-mono text-xs uppercase tracking-[0.3em] text-honey/80;
+  }
+
+  .hex-title {
+    @apply font-display text-4xl font-bold tracking-tightest text-cream sm:text-5xl;
+  }
+
+  .hex-lede {
+    @apply max-w-prose text-lg leading-relaxed text-cream-mute;
+  }
+
+  .hex-link {
+    @apply text-honey underline decoration-honey/30 underline-offset-4 transition-colors hover:decoration-honey;
+  }
+
+  .hex-hash {
+    @apply hex-mono break-all text-honey/90 transition-colors hover:text-honey;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 700ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
