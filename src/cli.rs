@@ -1,12 +1,12 @@
 //! CLI surface for `dappswarm`.
 //!
 //! Subcommands:
-//! - `doctor`  — verify the configured antd is reachable; print the
+//! - `doctor`:  verify the configured antd is reachable; print the
 //!   gateway version, API version, and configured postage batch id.
-//! - `publish` — pack + upload + sign a new feed entry.
-//! - `resolve` — find latest SOC for `(name, owner)` and unpack into a directory.
-//! - `info`    — list every known feed entry for `(name, owner)`.
-//! - `install` — resolve, then `docker compose up -d`.
+//! - `publish`: pack + upload + sign a new feed entry.
+//! - `resolve`: find latest SOC for `(name, owner)` and unpack into a directory.
+//! - `info`:    list every known feed entry for `(name, owner)`.
+//! - `install`: resolve, then `docker compose up -d`.
 
 use anyhow::{Context, Result, anyhow};
 use clap::{Parser, Subcommand};
@@ -110,7 +110,7 @@ async fn doctor(client: &Client) -> Result<()> {
 
     match client.postage_batch() {
         Some(batch) => println!("postage batch:  {batch}"),
-        None => println!("postage batch:  (not configured — uploads will fail)"),
+        None => println!("postage batch:  (not configured; uploads will fail)"),
     }
 
     println!("ok");

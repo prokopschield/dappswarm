@@ -127,7 +127,7 @@ pub async fn find_latest(
         }
     }
 
-    // Probe ran to its cap without finding a miss — accept the highest hit.
+    // Probe ran to its cap without finding a miss; accept the highest hit.
     let Some(first_miss) = first_miss else {
         return Ok(Some(FeedHit {
             index: last_hit,

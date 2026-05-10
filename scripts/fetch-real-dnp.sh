@@ -34,7 +34,7 @@ fi
 git clone --depth 1 --branch "$TAG" "$URL" "$DEST"
 
 if [[ ! -f "$DEST/dappnode_package.json" ]]; then
-  echo "no dappnode_package.json at repo root — not a DNP layout"
+  echo "no dappnode_package.json at repo root; not a DNP layout"
   exit 1
 fi
 

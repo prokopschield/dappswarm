@@ -1,12 +1,12 @@
-# dappswarm — demo helpers.
+# dappswarm: demo helpers.
 #
 # Required env (set once before invoking targets):
-#   STAMP_BATCH_ID   — funded postage batch id (32-byte hex)
-#   DAPPSWARM_KEY    — publisher signing key (32-byte hex secp256k1 secret)
+#   STAMP_BATCH_ID:   funded postage batch id (32-byte hex)
+#   DAPPSWARM_KEY:    publisher signing key (32-byte hex secp256k1 secret)
 #
 # Optional:
-#   DAPPSWARM_GATEWAY — antd base URL (default http://127.0.0.1:1633)
-#   DAPPSWARM_OWNER   — derived from DAPPSWARM_KEY at publish time;
+#   DAPPSWARM_GATEWAY: antd base URL (default http://127.0.0.1:1633)
+#   DAPPSWARM_OWNER:   derived from DAPPSWARM_KEY at publish time;
 #                       resolve/install need it explicitly.
 
 PACKAGE := hello.dnp.dappnode.eth

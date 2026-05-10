@@ -1,4 +1,4 @@
-# Demo script — 90 seconds
+# Demo script: 90 seconds
 
 Live segment runs the tiny `hello-dnp` fixture; recorded segment shows
 the same flow against a real public DNP from `github.com/dappnode`.
@@ -16,8 +16,8 @@ the same flow against a real public DNP from `github.com/dappnode`.
 ## Live narration (≈ 60 s)
 
 1. **Frame** (5 s):
-   > "Dappnode packages today live in registries — IPFS, GitHub, image
-   > hubs. dappswarm puts them on Swarm with mutable feeds for
+   > "Dappnode packages today live in registries (IPFS, GitHub, image
+   > hubs). dappswarm puts them on Swarm with mutable feeds for
    > versions. End-to-end, censorship-resistant, no IPFS hop."
 
 2. **Doctor** (5 s):
@@ -48,7 +48,7 @@ the same flow against a real public DNP from `github.com/dappnode`.
 5. **Update** (15 s):
    Change the `index.html` body, bump the manifest, republish:
    ```sh
-   sed -i 's/Hello from Swarm!/Hello — version 2!/' fixtures/hello-dnp/index.html
+   sed -i 's/Hello from Swarm!/Hello, version 2!/' fixtures/hello-dnp/index.html
    sed -i 's/"version": "0.1.1"/"version": "0.1.2"/' fixtures/hello-dnp/dappnode_package.json
    dappswarm publish fixtures/hello-dnp           # → next feed index
    dappswarm install hello.dnp.dappnode.eth --owner $DAPPSWARM_OWNER
@@ -67,7 +67,7 @@ public Dappnode package fetched from `github.com/dappnode` via
 
 > "Three changes from baseline Bee: SOC writes via a tiny ant-gateway
 > patch, sequence-indexed feeds for versions, and a one-shot install
-> command. Everything else is bee-compatible — bzz uploads, manifest
+> command. Everything else is bee-compatible: bzz uploads, manifest
 > walk, chunk reads."
 
 ## Failure modes (be ready to recover from)

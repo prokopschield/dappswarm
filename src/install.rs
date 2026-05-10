@@ -1,4 +1,4 @@
-//! `dappswarm install <name>` — resolve, then bring containers up.
+//! `dappswarm install <name>`: resolve, then bring containers up.
 //!
 //! Pipeline:
 //!   1. `resolve::run` into `data_dir` (or a tempdir if not provided).
@@ -53,7 +53,7 @@ pub async fn run(
     }
 
     if images.is_empty() {
-        println!("(no *.tar / *.tar.xz images at bundle root — relying on registry pulls)");
+        println!("(no *.tar / *.tar.xz images at bundle root; relying on registry pulls)");
     }
 
     let compose_path = out_dir.join(COMPOSE_FILENAME);

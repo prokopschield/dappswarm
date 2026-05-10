@@ -4,7 +4,7 @@ Publish and install [Dappnode](https://dappnode.com/) packages over
 [Swarm](https://www.ethswarm.org/), with versions tracked through
 sequence-indexed Swarm Feeds.
 
-ETHPrague Hackathon entry — **Bounty 3: Dappnode Packages on Swarm**.
+ETHPrague Hackathon entry for the **Dappnode Packages on Swarm** bounty.
 
 ```
 dappswarm publish ./fixtures/hello-dnp/
@@ -20,8 +20,8 @@ dappswarm install hello.dnp.dappnode.eth --owner 0x…
 `docker-compose.yml`, optional image `*.tar.xz` archives) into a single
 Mantaray-manifest upload on Swarm and stamps each release into a Swarm
 Feed indexed by package name. Resolvers find the latest release with one
-feed lookup, fetch each declared file, and bring the containers up — no
-centralised registry, no IPFS hop.
+feed lookup, fetch each declared file, and bring the containers up, with
+no centralised registry and no IPFS hop.
 
 The list of bundle-relative file paths is embedded in the feed payload
 itself, so resolve works against any bee-compatible gateway: no
@@ -84,7 +84,7 @@ dappswarm info <name> --owner 0x…
 
 The bundled `fixtures/hello-dnp` is a 3-file bundle that pulls
 `nginx:alpine` from Docker Hub and bind-mounts the fixture's
-`index.html` into it — no image tarball required.
+`index.html` into it; no image tarball required.
 
 ```sh
 make doctor                 # antd reachable, batch configured
@@ -136,7 +136,7 @@ discovery is future work.
 - `dappnode_package.json` and `docker-compose.yml` are required.
 - Any `*.tar` / `*.tar.xz` at the bundle root is treated as a Docker
   image archive and `docker load`ed.
-- The IPFS-shaped `image.hash` field in the manifest is ignored —
+- The IPFS-shaped `image.hash` field in the manifest is ignored;
   Swarm's Mantaray manifest gives us bundle-level integrity for free.
 
 ## Troubleshooting
@@ -145,5 +145,5 @@ discovery is future work.
 | --- | --- |
 | `doctor`: `failed to reach antd` | antd not running on the configured gateway. |
 | `publish`: 503 with "uploads not configured" | `antd` started without `--postage-batch` / `--wallet-key`. |
-| `publish`: 4xx on `POST /soc` | Bad signature recovery — check that the same `DAPPSWARM_KEY` produced the owner you expect. |
+| `publish`: 4xx on `POST /soc` | Bad signature recovery; check that the same `DAPPSWARM_KEY` produced the owner you expect. |
 | `install`: `docker compose: command not found` | Compose v2 plugin missing. Install or fall back to `docker-compose`. |

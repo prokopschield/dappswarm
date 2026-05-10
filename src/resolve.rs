@@ -13,7 +13,7 @@ use crate::feed::{self, FeedHit};
 use crate::publish::FeedPayload;
 use crate::swarm::Client;
 
-/// Outcome of a successful resolve — handed to the CLI for display.
+/// Outcome of a successful resolve, handed to the CLI for display.
 #[derive(Debug, Clone)]
 pub struct ResolveResult {
     pub manifest: Manifest,
@@ -50,7 +50,7 @@ pub async fn run(
 
     if payload.files.is_empty() {
         return Err(anyhow!(
-            "feed payload at {name} @ {index} has no files list — \
+            "feed payload at {name} @ {index} has no files list; \
              republish with a newer dappswarm to embed it"
         ));
     }

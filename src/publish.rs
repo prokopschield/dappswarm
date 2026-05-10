@@ -20,7 +20,7 @@ use crate::swarm::Client;
 /// `files` is a sorted list of bundle-relative paths, populated at
 /// publish time from the source tree. Embedding it lets `resolve` walk
 /// the bundle via plain `GET /bzz/<ref>/<path>` calls without needing a
-/// manifest-listing endpoint — useful when reads happen through a
+/// manifest-listing endpoint, useful when reads happen through a
 /// public Bee gateway that lacks `/v0/manifest/<ref>`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FeedPayload {
@@ -34,7 +34,7 @@ pub struct FeedPayload {
     pub files: Vec<String>,
 }
 
-/// Outcome of a successful publish — handed to the CLI for display.
+/// Outcome of a successful publish, handed to the CLI for display.
 #[derive(Debug, Clone)]
 pub struct PublishResult {
     pub manifest_name: String,

@@ -1,4 +1,4 @@
-//! DNP bundle model — minimal, just enough to publish + install.
+//! DNP bundle model: minimal, just enough to publish + install.
 //!
 //! A Dappnode package on disk is a flat directory containing
 //! `dappnode_package.json`, `docker-compose.yml`, and zero or more
@@ -6,7 +6,7 @@
 //! for upload (Swarm content-addresses chunks; recompressing would
 //! defeat dedup) and unpack on the resolver side.
 //!
-//! Manifest validation here is intentionally shallow — only the fields
+//! Manifest validation here is intentionally shallow; only the fields
 //! `dappswarm` itself needs to act on. Anything else (hardware reqs,
 //! categories, links) passes through opaquely.
 
@@ -117,7 +117,7 @@ pub fn unpack(tar_bytes: &[u8], dir: &Path) -> Result<(), BundleError> {
     Ok(())
 }
 
-/// Verify the unpacked bundle has the files we need to install — the
+/// Verify the unpacked bundle has the files we need to install: the
 /// manifest and the compose file. Image tarballs are optional (a
 /// package might use registry images only).
 pub fn check_layout(dir: &Path) -> Result<Manifest, BundleError> {

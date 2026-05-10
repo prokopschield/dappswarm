@@ -145,7 +145,7 @@ impl Client {
         Ok(parsed.reference)
     }
 
-    /// `GET /bzz/<ref>/<path>` — manifest walk + body fetch.
+    /// `GET /bzz/<ref>/<path>`: manifest walk + body fetch.
     pub async fn get_bzz_path(&self, reference: &str, path: &str) -> Result<Bytes, SwarmError> {
         let url = format!("{}/bzz/{}/{}", self.base, reference, path);
         let resp = self.http.get(url).send().await?;
@@ -164,7 +164,7 @@ impl Client {
         Ok(resp.bytes().await?)
     }
 
-    /// `GET /bzz/<ref>` — fetch the bundle root (returns the tar bytes
+    /// `GET /bzz/<ref>`: fetch the bundle root (returns the tar bytes
     /// when the manifest is a collection).
     pub async fn get_bzz_root(&self, reference: &str) -> Result<Bytes, SwarmError> {
         let url = format!("{}/bzz/{}", self.base, reference);
@@ -184,7 +184,7 @@ impl Client {
         Ok(resp.bytes().await?)
     }
 
-    /// `GET /chunks/<addr>` — raw chunk bytes (CAC or SOC).
+    /// `GET /chunks/<addr>`: raw chunk bytes (CAC or SOC).
     pub async fn get_chunk(&self, address_hex: &str) -> Result<Bytes, SwarmError> {
         let url = format!("{}/chunks/{}", self.base, address_hex);
         let resp = self.http.get(url).send().await?;
@@ -203,7 +203,7 @@ impl Client {
         Ok(resp.bytes().await?)
     }
 
-    /// `POST /soc/<owner>/<id>` — upload a Single-Owner Chunk.
+    /// `POST /soc/<owner>/<id>`: upload a Single-Owner Chunk.
     ///
     /// Body is the inner CAC payload (`span(8) || data`). The signature
     /// is supplied via the `swarm-soc-signature` header. `owner_hex`

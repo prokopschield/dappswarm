@@ -1,4 +1,4 @@
-//! `dappswarm` — publish and install Dappnode packages over Swarm.
+//! `dappswarm`: publish and install Dappnode packages over Swarm.
 //!
 //! See `PLAN.md` and `CONTEXT.md` at the repo root for the project-wide
 //! design. The library exposes a small layered API: a thin HTTP client
