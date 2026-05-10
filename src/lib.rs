@@ -8,5 +8,6 @@
 
 pub mod bundle;
 pub mod feed;
+pub mod publish;
 pub mod soc;
 pub mod swarm;
