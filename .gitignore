@@ -6,3 +6,4 @@ PLAN.md
 /demo/node_modules
 /demo/dist
 /demo/.svelte-kit
+.env
