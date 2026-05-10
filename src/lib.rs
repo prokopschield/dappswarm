@@ -6,5 +6,6 @@
 //! a Swarm-Feed convention on top of SOCs (`feed`), a DNP bundle model
 //! (`bundle`), and orchestrators (`publish`, `resolve`, `install`).
 
+pub mod bundle;
 pub mod soc;
 pub mod swarm;
