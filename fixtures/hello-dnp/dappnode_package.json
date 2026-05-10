@@ -1,0 +1,9 @@
+{
+  "name": "hello.dnp.dappnode.eth",
+  "version": "0.1.2",
+  "description": "Tiny demo Dappnode package — nginx serving 'Hello from Swarm!'",
+  "type": "service",
+  "license": "MIT",
+  "keywords": ["dappswarm", "demo"],
+  "homepage": "https://github.com/prokopschield/dappswarm"
+}
