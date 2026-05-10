@@ -7,9 +7,12 @@
 //! (`bundle`), and orchestrators (`publish`, `resolve`, `install`).
 
 pub mod bundle;
+pub mod cli;
 pub mod feed;
 pub mod install;
 pub mod publish;
 pub mod resolve;
 pub mod soc;
 pub mod swarm;
+
+pub use cli::run;
