@@ -1,5 +1,6 @@
 <script lang="ts">
   import { metadata } from '$lib/metadata';
+  import { feedStore } from '$lib/feedStore.svelte';
 </script>
 
 <footer class="border-t border-ink-border bg-ink-surface/40">
@@ -11,10 +12,10 @@
         </p>
         <p class="max-w-md text-sm text-cream-mute">
           Built with dappswarm, and you're reading the proof.
-          {#if metadata.ref}
+          {#if feedStore.status === 'ready' && feedStore.latest}
             This page is served from
-            <a class="hex-link hex-mono" href="{metadata.gateway}/bzz/{metadata.ref.replace(/^0x/, '')}/" target="_blank" rel="noreferrer">
-              bzz:{metadata.ref.slice(0, 10)}…
+            <a class="hex-link hex-mono" href="{metadata.gateway}/bzz/{feedStore.latest.ref.replace(/^0x/, '')}/" target="_blank" rel="noreferrer">
+              bzz:{feedStore.latest.ref.slice(0, 10)}…
             </a>
           {/if}
         </p>

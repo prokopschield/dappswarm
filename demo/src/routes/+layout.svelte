@@ -1,10 +1,13 @@
 <script lang="ts">
   import '../app.css';
   import { onMount } from 'svelte';
+  import { startFeedLoad } from '$lib/feedStore.svelte';
 
   let { children } = $props();
 
   onMount(() => {
+    startFeedLoad();
+
     const onMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth) * 100;
       const y = (e.clientY / window.innerHeight) * 100;

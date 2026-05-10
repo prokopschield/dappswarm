@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { feedEntries } from '$lib/feedData';
+  import { feedStore } from '$lib/feedStore.svelte';
   import { metadata } from '$lib/metadata';
   import { shortHex } from '$lib/keccak';
 
@@ -17,7 +17,7 @@
       <p class="hex-eyebrow mb-4">this page's feed</p>
       <h2 class="hex-title">You're reading the proof.</h2>
       <p class="hex-lede mt-6">
-        Every row below is a real feed entry. The page you're looking at was published by one of them; the
+        Every row below is a real feed entry, fetched live from the gateway when this page loaded. The
         currently-served version is highlighted.
       </p>
     </div>
@@ -29,7 +29,16 @@
         <span class="text-right">published</span>
       </div>
 
-      {#if feedEntries.length === 0}
+      {#if feedStore.status === 'loading' || feedStore.status === 'idle'}
+        <div class="px-6 py-10 text-center text-mute">
+          <p class="hex-mono mb-2">// resolving feed from gateway</p>
+        </div>
+      {:else if feedStore.status === 'error'}
+        <div class="px-6 py-10 text-center text-mute">
+          <p class="hex-mono mb-2 text-red-400/80">// gateway unreachable</p>
+          <p class="text-sm">{feedStore.error}</p>
+        </div>
+      {:else if feedStore.entries.length === 0}
         <div class="px-6 py-10 text-center text-mute">
           <p class="hex-mono mb-2">// awaiting first publish</p>
           <p class="text-sm">
@@ -37,7 +46,7 @@
           </p>
         </div>
       {:else}
-        {#each feedEntries as entry, i (entry.index)}
+        {#each feedStore.entries as entry, i (entry.index)}
           <a
             href="{metadata.gateway}/bzz/{entry.ref.replace(/^0x/, '')}/"
             target="_blank"

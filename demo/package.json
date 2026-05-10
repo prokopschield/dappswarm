@@ -8,8 +8,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "refresh-metadata": "tsx scripts/refresh-metadata.ts"
+    "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.6",
